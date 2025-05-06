@@ -9,7 +9,80 @@
 </head>
 <body>
     <div id="info">
-        <h1>ระบบทำเอกสารมผ. โรงเรียนนางรอง</h1>
+        <div id="desc">
+            <h1>ระบบทำเอกสารมผ. โรงเรียนนางรอง</h1>
+        </div>
+        <div id="studentForm">
+            <div class="form-row">
+                <label for="prefix">คำนำหน้าชื่อ:</label>
+                <input type="text" id="prefix">
+            </div>
+        
+            <div class="form-row">
+                <label for="firstName">ชื่อ:</label>
+                <input type="text" id="firstName">
+            </div>
+        
+            <div class="form-row">
+                <label for="lastName">นามสกุล:</label>
+                <input type="text" id="lastName">
+            </div>
+        
+            <div class="form-row">
+                <label for="studentId">เลขที่:</label>
+                <input type="text" id="studentId">
+            </div>
+        
+            <div class="form-row">
+                <label for="class">ชั้น:</label>
+                <input type="text" id="class">
+            </div>
+        
+            <div class="form-row">
+                <label for="points">จำนวนคะแนน:</label>
+                <input type="text" id="points">
+            </div>
+        
+            <div class="form-row">
+                <label for="date">วัน/เดือน/ปี ที่ส่ง:</label>
+                <input type="text" id="date" placeholder="ปล่อยว่างไว้ในกรณีที่ใช้วันที่วันนี้">
+            </div>
+        
+            <div class="form-row">
+                <label for="months">รายเดือน:</label>
+                <select id="months">
+                    <option value="" selected>----ว่าง----</option>
+                    <option value="มกราคม">มกราคม</option>
+                    <option value="กุมภาพันธ์">กุมภาพันธ์</option>
+                    <option value="มีนาคม">มีนาคม</option>
+                    <option value="เมษายน">เมษายน</option>
+                    <option value="พฤษภาคม">พฤษภาคม</option>
+                    <option value="มิถุนายน">มิถุนายน</option>
+                    <option value="กรกฎาคม">กรกฎาคม</option>
+                    <option value="สิงหาคม">สิงหาคม</option>
+                    <option value="กันยายน">กันยายน</option>
+                    <option value="ตุลาคม">ตุลาคม</option>
+                    <option value="พฤศจิกายน">พฤศจิกายน</option>
+                    <option value="ธันวาคม">ธันวาคม</option>
+                </select>
+            </div>
+        
+            <div class="form-row">
+                <label for="semeter">ภาคเรียน:</label>
+                <input type="text" id="semeter" placeholder="ปล่อยว่างไว้ในกรณีไม่ต้องการให้แสดง">
+            </div>
+        
+            <div class="form-row">
+                <label for="semeter-year">ปีการศึกษา:</label>
+                <input type="text" id="semeter-year" placeholder="ปล่อยว่างไว้ในกรณีไม่ต้องการให้แสดง">
+            </div>
+        
+            <div class="form-row">
+                <a href="https://forms.gle/jqN2GcdN4MJ2PCJv7" id="reportLink" target="_blank">
+                    <span class="tooltip">รายงาน ร้องเรียน แนะนำ ติชม</span>
+                </a>
+            </div>
+        </div>        
     </div>
 
     <div id="contents">

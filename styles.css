@@ -25,6 +25,7 @@ body {
 #info {
     background-color: var(--secondary-color);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     text-shadow: black 3px 3px 1px;
     text-align: center;
@@ -44,6 +45,7 @@ body {
 }
 
 #album {
+    margin-bottom: 16px;
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
@@ -108,6 +110,83 @@ body {
     padding: 2px 0;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+}
+
+#studentForm {
+    padding: 16px;
+    background-color: var(--secondary-color);
+    border-radius: 12px;
+    margin: 16px;
+    color: var(--text-color);
+    text-shadow: black 1px 1px 1px;
+}
+
+#studentForm label {
+    display: block;
+    margin-top: 12px;
+    font-weight: 500;
+}
+
+#studentForm input,
+#studentForm select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: none;
+    margin-top: 4px;
+    background-color: #fff;
+    color: #000;
+    font-size: 1rem;
+}
+
+#studentForm input::placeholder {
+    color: #888;
+}
+
+#studentForm a#reportLink {
+    display: block;
+    margin-top: 24px;
+    text-align: center;
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
+#studentForm a#reportLink:hover {
+    color: #ffffff;
+}
+
+
+#studentForm {
+    width: 100%;
+    max-width: 500px;
+    margin-top: 0 ;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.form-row label {
+    width: 140px;
+    margin-right: 12px;
+    text-align: right;
+    font-weight: 500;
+}
+
+.form-row input,
+.form-row select {
+    flex: 1;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+#reportLink {
+    margin-left: 140px; /* match label width */
+    text-decoration: underline;
+    color: var(--text-color);
 }
 
 
