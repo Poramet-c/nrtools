@@ -35,14 +35,15 @@ function applyGroupStyling() {
         const label = el.querySelector('.image-label');
         if (!label) return;
 
-        const groupIndex = Math.floor(i / 10) + 1; // Group of 10
-        if (groupIndex % 2 === 0) {
-            label.style.color = '#FCF259;'; 
-        } else {
-            label.style.color = '#F0F0F0'; 
-        }
+        const groupIndex = Math.floor(i / 10) ; 
+
+
+        label.style.color = groupIndex % 2 === 0 ? '#F0F0F0' : '#FCF259';
+
+        el.style.marginTop = (i % 10 === 0 && i !== 0) ? '24px' : '0';
     });
 }
+
 
 document.getElementById('imageUploader').addEventListener('change', function(event) {
     const files = event.target.files;
