@@ -47,36 +47,53 @@
                 <label for="date">วัน/เดือน/ปี ที่ส่ง:</label>
                 <input type="text" id="date" placeholder="ปล่อยว่างไว้ในกรณีที่ใช้วันที่วันนี้">
             </div>
-        
-            <div class="form-row">
-                <label for="months">รายเดือน:</label>
-                <select id="months">
-                    <option value="" selected>----ว่าง----</option>
-                    <option value="มกราคม">มกราคม</option>
-                    <option value="กุมภาพันธ์">กุมภาพันธ์</option>
-                    <option value="มีนาคม">มีนาคม</option>
-                    <option value="เมษายน">เมษายน</option>
-                    <option value="พฤษภาคม">พฤษภาคม</option>
-                    <option value="มิถุนายน">มิถุนายน</option>
-                    <option value="กรกฎาคม">กรกฎาคม</option>
-                    <option value="สิงหาคม">สิงหาคม</option>
-                    <option value="กันยายน">กันยายน</option>
-                    <option value="ตุลาคม">ตุลาคม</option>
-                    <option value="พฤศจิกายน">พฤศจิกายน</option>
-                    <option value="ธันวาคม">ธันวาคม</option>
-                </select>
+
+            <div class="form-row switch-row">
+               <!-- <label for="modeToggle">โหมด:</label> -->
+               <div class="switch-wrapper">
+                   <span>รายเดือน</span>
+                   <label class="switch">
+                       <input type="checkbox" id="modeToggle">
+                       <span class="slider round"></span>
+                   </label>
+                   <span>รายภาคเรียน</span>
+               </div>
             </div>
-        
-            <div class="form-row">
-                <label for="semeter">ภาคเรียน:</label>
-                <input type="text" id="semeter" placeholder="ปล่อยว่างไว้ในกรณีไม่ต้องการให้แสดง">
+            
+            <!-- รายเดือน Section -->
+            <div class="form-row mode-monthly">
+               <label for="months">รายเดือน:</label>
+               <select id="months">
+                   <option value="" selected>----ว่าง----</option>
+                   <option value="มกราคม">มกราคม</option>
+                   <option value="กุมภาพันธ์">กุมภาพันธ์</option>
+                   <option value="มีนาคม">มีนาคม</option>
+                   <option value="เมษายน">เมษายน</option>
+                   <option value="พฤษภาคม">พฤษภาคม</option>
+                   <option value="มิถุนายน">มิถุนายน</option>
+                   <option value="กรกฎาคม">กรกฎาคม</option>
+                   <option value="สิงหาคม">สิงหาคม</option>
+                   <option value="กันยายน">กันยายน</option>
+                   <option value="ตุลาคม">ตุลาคม</option>
+                   <option value="พฤศจิกายน">พฤศจิกายน</option>
+                   <option value="ธันวาคม">ธันวาคม</option>
+               </select>
             </div>
-        
-            <div class="form-row">
-                <label for="semeter-year">ปีการศึกษา:</label>
-                <input type="text" id="semeter-year" placeholder="ปล่อยว่างไว้ในกรณีไม่ต้องการให้แสดง">
+            
+            <!-- รายภาคเรียน Section -->
+            <div class="form-row mode-semester" style="display: none;">
+               <label for="semeter">ภาคเรียน:</label>
+               <input type="text" id="semeter" placeholder="ปล่อยว่างไว้ในกรณีไม่ต้องการให้แสดง">
             </div>
-        </div>        
+            <div class="form-row mode-semester" style="display: none;">
+               <label for="semeter-year">ปีการศึกษา:</label>
+               <input type="text" id="semeter-year" placeholder="ปล่อยว่างไว้ในกรณีไม่ต้องการให้แสดง">
+            </div>
+        </div>
+        
+        <button class="button">
+            เริ่มสร้างเอกสาร
+        </button>          
     </div>
 
     <div id="contents">

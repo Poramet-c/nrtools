@@ -34,6 +34,7 @@ body {
     padding: 8px;
     padding-top: 0;
     border-radius: 16px;
+    /* overflow-x: hidden; */
 }
 
 
@@ -195,6 +196,94 @@ body {
     color: var(--text-color);
 }
 
+.switch-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.switch-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 32px;
+    flex-shrink: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: var(--primary-color);
+    transition: .4s;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    height: 28px;
+    width: 28px;
+    bottom: 2px;
+    left: 2px;
+    background-color: white;
+    transition: 1s ease-in-out;
+    border-radius: 50%;
+}
+
+input:checked + .slider::before {
+    left: auto;
+    right: 2px;
+}
+
+input:checked + .slider {
+    background-color: var(--text-color);
+}
+
+/* From Uiverse.io by thxhtrxn */ 
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0.75rem 1.25rem;
+    font-weight: 500;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--text-color); /* slate-200 */
+    background-color: var(--primary-color); /* zinc-950 */
+    /* border: 1.58px solid #020202; */
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  /* From Uiverse.io by thxhtrxn */ 
+  .button .subtext {
+    color: rgba(203, 213, 225, 0.85); /* slate-300/85 */
+    margin-left: 0.5rem;
+  }
+  
+  /* From Uiverse.io by thxhtrxn */ 
+  .button:hover {
+    transform: translateY(-0.335rem);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  
 
 @media (max-width: 768px) {
     body {

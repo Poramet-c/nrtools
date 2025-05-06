@@ -109,3 +109,27 @@ document.getElementById('imageUploader').addEventListener('change', function(eve
         reader.readAsDataURL(file);      
     });
 });
+
+document.getElementById('modeToggle').addEventListener('change', function () {
+    const isSemesterMode = this.checked;
+
+    document.querySelectorAll('.mode-monthly').forEach(el => {
+        el.style.display = isSemesterMode ? 'none' : 'flex';
+    });
+
+    document.querySelectorAll('.mode-semester').forEach(el => {
+        el.style.display = isSemesterMode ? 'flex' : 'none';
+    });
+
+    // Optional: Save mode to localStorage
+    localStorage.setItem('gradeMode', isSemesterMode ? 'semester' : 'monthly');
+});
+
+// Restore mode on load
+window.addEventListener('DOMContentLoaded', () => {
+    const savedMode = localStorage.getItem('gradeMode');
+    if (savedMode === 'semester') {
+        document.getElementById('modeToggle').checked = true;
+        document.getElementById('modeToggle').dispatchEvent(new Event('change'));
+    }
+});
