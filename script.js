@@ -1,3 +1,30 @@
+function saveStudentFormToLocalStorage() {
+    const form = document.getElementById('studentForm');
+    const inputs = form.querySelectorAll('input, select');
+
+    const formData = {};
+
+    inputs.forEach(input => {
+        formData[input.id] = input.value;
+    });
+
+    localStorage.setItem('studentFormData', JSON.stringify(formData));
+}
+
+function loadStudentFormFromLocalStorage() {
+    const formData = JSON.parse(localStorage.getItem('studentFormData'));
+    if (!formData) return;
+
+    Object.keys(formData).forEach(id => {
+        const input = document.getElementById(id);
+        if (input) {
+            input.value = formData[id];
+        }
+    });
+}
+
+window.addEventListener('DOMContentLoaded', loadStudentFormFromLocalStorage);
+
 new Sortable(document.getElementById('album'), {
     animation: 150,
     ghostClass: 'sortable-ghost',
@@ -40,7 +67,7 @@ function applyGroupStyling() {
 
         label.style.color = groupIndex % 2 === 0 ? '#F0F0F0' : '#FCF259';
 
-        el.style.marginTop = (i % 10 === 0 && i !== 0) ? '24px' : '0';
+        // el.style.marginTop = (i % 10 === 0 && i !== 0) ? '24px' : '0';
     });
 }
 
