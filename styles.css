@@ -36,7 +36,17 @@ body {
     border-radius: 16px;
     /* overflow-x: hidden; */
 }
+/* 
+h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
 
+h1 {
+    margin-bottom: 0;
+} */
 
 #contents {
     background-color: var(--background-color);
