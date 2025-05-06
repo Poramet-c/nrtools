@@ -1,3 +1,15 @@
+function loadStudentFormFromLocalStorage() {
+    const formData = JSON.parse(localStorage.getItem('studentFormData'));
+    if (!formData) return;
+
+    Object.keys(formData).forEach(id => {
+        const input = document.getElementById(id);
+        if (input) {
+            input.value = formData[id];
+        }
+    });
+}
+
 function saveStudentFormToLocalStorage() {
     const form = document.getElementById('studentForm');
     const inputs = form.querySelectorAll('input, select');
@@ -11,19 +23,19 @@ function saveStudentFormToLocalStorage() {
     localStorage.setItem('studentFormData', JSON.stringify(formData));
 }
 
-function loadStudentFormFromLocalStorage() {
-    const formData = JSON.parse(localStorage.getItem('studentFormData'));
-    if (!formData) return;
+// Automatically save on change
+window.addEventListener('DOMContentLoaded', () => {
+    loadStudentFormFromLocalStorage(); // ← load saved data first
 
-    Object.keys(formData).forEach(id => {
-        const input = document.getElementById(id);
-        if (input) {
-            input.value = formData[id];
-        }
+    const form = document.getElementById('studentForm');
+    const inputs = form.querySelectorAll('input, select');
+
+    inputs.forEach(input => {
+        input.addEventListener('input', saveStudentFormToLocalStorage);
+        input.addEventListener('change', saveStudentFormToLocalStorage); // good for selects
     });
-}
+});
 
-window.addEventListener('DOMContentLoaded', loadStudentFormFromLocalStorage);
 
 new Sortable(document.getElementById('album'), {
     animation: 150,
