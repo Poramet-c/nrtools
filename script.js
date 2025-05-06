@@ -133,3 +133,4 @@ window.addEventListener('DOMContentLoaded', () => {
         document.getElementById('modeToggle').dispatchEvent(new Event('change'));
     }
 });
+
