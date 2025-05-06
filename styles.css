@@ -30,6 +30,7 @@ body {
     text-align: center;
     margin: 16px;
     padding: 8px;
+    padding-top: 0;
     border-radius: 16px;
     height: 100vh - 16px;
 }
@@ -86,10 +87,29 @@ body {
 }
 
 .sortable-ghost {
-    opacity: 0.4;
+    opacity: 0.5;
     transform: scale(0.95);
     border: 2px dashed #aaa;
 }
+
+.image {
+    position: relative;
+}
+
+.image-label {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: var(--text-color);
+    font-size: 14px;
+    padding: 2px 0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
 
 @media (max-width: 768px) {
     body {
