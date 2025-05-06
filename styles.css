@@ -256,6 +256,7 @@ input:checked + .slider {
 
 /* From Uiverse.io by thxhtrxn */ 
 .button {
+    margin-bottom: 24px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
