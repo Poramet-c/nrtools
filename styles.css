@@ -285,6 +285,34 @@ input:checked + .slider {
   }
   
 
+  #licenseNote {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+    font-size: 0.85rem;
+    color: var(--text-color);
+    text-align: center;
+    font-style: italic;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #licenseNote p {
+    margin: 0;
+    line-height: 1.6;
+  }
+  
+  #licenseNote a {
+    color: var(--form-color);
+    text-decoration: none;
+  }
+  
+  #licenseNote a:hover {
+    text-decoration: underline;
+  }
+  
+
 @media (max-width: 768px) {
     body {
         grid-template-columns: 1fr;
