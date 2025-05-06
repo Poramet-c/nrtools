@@ -40,26 +40,29 @@ function setupFormAutoSave() {
 function setupImageUploadAndDisplay() {
     const imageUploader = document.getElementById('imageUploader');
     const album = document.getElementById('album');
+    const uploadWrapper = document.getElementById('uploadWrapper');
 
-    imageUploader.addEventListener('change', function(event) {
+    imageUploader.addEventListener('change', function (event) {
         const files = event.target.files;
         Array.from(files).forEach(file => {
             if (!file.type.startsWith('image/')) return;
             const reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 const imgDiv = document.createElement('div');
                 imgDiv.className = 'image';
                 const img = document.createElement('img');
                 img.src = e.target.result;
                 img.alt = file.name;
                 imgDiv.appendChild(img);
-                album.insertBefore(imgDiv, document.getElementById('uploadLabel')); // Insert before the upload label
+
+                // Insert after the upload wrapper
+                album.insertBefore(imgDiv, uploadWrapper.nextSibling);
+
                 updateLabels();
                 applyGroupStyling();
             };
             reader.readAsDataURL(file);
         });
-        // Clear the input so the same file can be selected again
         this.value = null;
     });
 }
@@ -129,33 +132,41 @@ function setupModeToggle() {
 
 function generateFromAlbum() {
     const albumImages = document.querySelectorAll('#album .image img');
-    const files = Array.from(albumImages).map(img => {
-        return new Promise((resolve, reject) => {
-            fetch(img.src)
-                .then(response => response.blob())
-                .then(blob => {
-                    const file = new File([blob], 'album_image.jpg', { type: blob.type });
-                    resolve(file);
-                })
-                .catch(error => reject(error));
-        });
-    });
+    if (!albumImages || albumImages.length === 0) {
+        alert("No images in the album to generate a PDF.");
+        return;
+    }
+
+    const files = Array.from(albumImages).map(img =>
+        fetch(img.src)
+            .then(response => response.blob())
+            .then(blob => new File([blob], 'album_image.jpg', { type: blob.type }))
+    );
 
     Promise.all(files)
         .then(fileObjects => {
             const chunkedFiles = chunkArray(fileObjects, 10);
-            document.getElementById('contents').querySelectorAll('canvas').forEach(canvas => canvas.remove());
-            const canvasContainer = document.createElement('div');
-            canvasContainer.id = 'canvas-container';
-            document.getElementById('contents').appendChild(canvasContainer);
-
-            return Promise.all(chunkedFiles.map((fileChunk, index) => createCanvasWithImages(fileChunk, index)));
+            return Promise.all(chunkedFiles.map((chunk, i) => createCanvasWithImages(chunk, i)));
         })
-        .then(() => {
-            downloadAsPDF(); // Automatically trigger download after generation
+        .then(canvases => {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF('portrait', 'px', [1654, 2339]);
+
+            canvases.forEach((canvas, i) => {
+                const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                if (i > 0) pdf.addPage();
+                pdf.addImage(imgData, 'JPEG', 0, 0, 1654, 2339);
+            });
+
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const currentTime = new Date().toISOString().replace(/[:.]/g, '').replace('T', '_').slice(0, 15);
+            const fileName = `${firstName}-${lastName}-${currentTime}.pdf`;
+
+            pdf.save(fileName);
         })
         .catch(error => {
-            alert("Error generating from album: " + error);
+            alert("Error generating PDF: " + error);
         });
 }
 
@@ -198,8 +209,7 @@ function createCanvasWithImages(files, chunkIndex) {
                         }
                     });
                     drawThaiText(ctx);
-                    document.getElementById('canvas-container').appendChild(canvas);
-                    resolve();
+                    resolve(canvas);
                 })
                 .catch(reject);
         };
@@ -284,24 +294,50 @@ function drawThaiText(ctx) {
 }
 
 function downloadAsPDF() {
-    const canvases = document.querySelectorAll('#contents #canvas-container canvas');
-    if (canvases.length === 0) {
+    const contentsElement = document.getElementById('contents');
+    const canvasContainers = contentsElement.querySelectorAll('[id^="canvas-container-"]');
+
+    if (canvasContainers.length === 0) {
         alert("No documents to download.");
         return;
     }
+
     const { jsPDF } = window.jspdf;
     const pdf = new jsPDF('portrait', 'px', [1654, 2339]);
 
-    canvases.forEach((canvas, i) => {
-        if (i > 0) pdf.addPage();
-        const imgData = canvas.toDataURL('image/jpeg', 0.95); // Use JPEG for potentially smaller file size
-        pdf.addImage(imgData, 'JPEG', 0, 0, 1654, 2339);
+    const addPagesPromises = []; // Array to hold promises for adding pages
+
+    canvasContainers.forEach((container, i) => {
+        const canvas = container.querySelector('canvas');
+        if (canvas) {
+            const imgData = canvas.toDataURL('image/jpeg', 0.95);
+
+            // Use a promise to handle addPage and addImage asynchronously
+            const addPagePromise = new Promise((resolve) => {
+                if (i > 0) {
+                    pdf.addPage();
+                }
+                pdf.addImage(imgData, 'JPEG', 0, 0, 1654, 2339);
+                resolve(); // Resolve the promise when the image is added
+            });
+
+            addPagesPromises.push(addPagePromise); // Add promise to the array
+        }
     });
 
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
-    const currentTime = new Date().toISOString().replace(/[:.]/g, '').replace('T', '_').slice(0, 15);
-    const fileName = `${firstName}-${lastName}-${currentTime}.pdf`;
+    // *After* all pages and images are added, save the PDF
+    Promise.all(addPagesPromises).then(() => {
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const currentTime = new Date().toISOString().replace(/[:.]/g, '').replace('T', '_').slice(0, 15);
+        const fileName = `${firstName}-${lastName}-${currentTime}.pdf`;
 
-    pdf.save(fileName); // Simpler way to trigger download
+        pdf.save(fileName, { returnPromise: true })
+            .then(() => {
+                // console.log('PDF downloaded successfully!');
+            })
+            .catch(error => {
+                console.error('Error downloading PDF:', error);
+            });
+    });
 }
