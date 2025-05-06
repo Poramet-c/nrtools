@@ -309,7 +309,7 @@ input:checked + .slider {
   }
   
   #licenseNote a:hover {
-    text-decoration: underline;
+    color: var(--primary-color);
   }
   
 
