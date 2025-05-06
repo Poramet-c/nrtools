@@ -35,7 +35,7 @@ function applyGroupStyling() {
         const label = el.querySelector('.image-label');
         if (!label) return;
 
-        const groupIndex = Math.floor(i / 10); // Group of 10
+        const groupIndex = Math.floor(i / 10) + 1; // Group of 10
         if (groupIndex % 2 === 0) {
             label.style.color = '#FCF259;'; 
         } else {
