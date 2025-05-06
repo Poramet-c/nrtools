@@ -68,7 +68,10 @@ function setupImageUploadAndDisplay() {
 }
 
 function setupImageReordering() {
-    new Sortable(document.getElementById('album'), {
+    const album = document.getElementById('album');
+    const uploadWrapper = document.getElementById('uploadWrapper');
+
+    new Sortable(album, {
         animation: 150,
         ghostClass: 'sortable-ghost',
         filter: '#uploadLabel',
@@ -76,6 +79,16 @@ function setupImageReordering() {
         onEnd: () => {
             updateLabels();
             applyGroupStyling();
+        },
+        onMove: function (evt) {
+            // Prevent moving any image *before* the uploader
+            const to = evt.to;
+            const related = evt.related;
+
+            // If trying to insert before uploadWrapper, block it
+            if (related === uploadWrapper) {
+                return false;
+            }
         }
     });
 }
