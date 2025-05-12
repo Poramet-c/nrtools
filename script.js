@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupImageUploadAndDisplay();
     setupImageReordering();
     setupModeToggle();
+    new setupDropFileMethod();
 });
 
 function loadStudentFormFromLocalStorage() {
@@ -353,4 +354,68 @@ function downloadAsPDF() {
                 console.error('Error downloading PDF:', error);
             });
     });
+}
+
+class setupDropFileMethod {
+
+    constructor() {
+        document.addEventListener('drop', this.dropHandler.bind(this));
+        document.addEventListener('dragover', this.dragOverHandler.bind(this));
+        document.addEventListener('dragleave', this.dragLeaveHandler.bind(this));
+    }
+
+    dropHandler(event) {
+        event.preventDefault();
+
+        const dataTransferFiles = event.dataTransfer.files;
+        const files = Array.from(dataTransferFiles).filter(e => e.type.includes('image'));
+        const imageUploader = document.getElementById("imageUploader");
+        this.cleanPreviewImage(true);
+
+        if (files.length > 0) {
+            imageUploader.files = event.dataTransfer.files;
+            imageUploader.dispatchEvent(new Event('change'));
+        }
+    }
+
+    dragOverHandler(event) {
+        event.preventDefault();
+
+        const dataTransferItems = event.dataTransfer.items;
+        const imageFiles = Array.from(dataTransferItems).filter(e => e.type.includes('image'));
+        const previewImages = document.getElementsByClassName('previewImage');
+        const album = document.getElementById("album");
+
+        if (imageFiles.length > 0) {
+            while (previewImages.length < imageFiles.length) {
+                const previewImage = document.createElement('label');
+                previewImage.className = 'previewImage';
+                album.appendChild(previewImage);
+
+                setTimeout(() => {
+                    previewImage.classList.add('show');
+                }, 50);
+            }
+        }
+    }
+
+    dragLeaveHandler(event) {
+        if (event.screenX == 0 && event.screenY === 0)
+            this.cleanPreviewImage();
+    }
+
+    cleanPreviewImage(clean_fast) {
+        const previewImages = document.getElementsByClassName('previewImage');
+        const album = document.getElementById("album");
+        Array.from(previewImages).forEach((element) => {
+            element.classList.remove('show');
+
+            if (clean_fast)
+                album.removeChild(element);
+            else
+                setTimeout(() => {
+                    album.removeChild(element);
+                }, 50);
+        });
+    }
 }

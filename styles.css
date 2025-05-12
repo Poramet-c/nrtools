@@ -27,7 +27,8 @@ body {
     background-color: var(--secondary-color);
     display: flex;
     flex-direction: column;
-    align-items: center;          /* horizontal centering */
+    align-items: center;
+    /* horizontal centering */
     text-shadow: black 3px 3px 1px;
     text-align: center;
     margin: 16px;
@@ -36,6 +37,7 @@ body {
     border-radius: 16px;
     /* overflow-x: hidden; */
 }
+
 /* 
 h2 {
     margin: 0;
@@ -65,7 +67,8 @@ h1 {
 
 .image {
     width: 150px;
-    aspect-ratio: 1 / 1; /* Makes it square */
+    aspect-ratio: 1 / 1;
+    /* Makes it square */
     overflow: hidden;
     border-radius: 8px;
     position: relative;
@@ -75,7 +78,8 @@ h1 {
 .image img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures image fills the square */
+    object-fit: cover;
+    /* Ensures image fills the square */
     display: block;
 }
 
@@ -201,7 +205,8 @@ h1 {
 }
 
 #reportLink {
-    margin-left: 140px; /* match label width */
+    margin-left: 140px;
+    /* match label width */
     text-decoration: underline;
     color: var(--text-color);
 }
@@ -236,7 +241,10 @@ h1 {
 .slider {
     position: absolute;
     cursor: pointer;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-color: var(--primary-color);
     transition: .4s;
     border-radius: 24px;
@@ -255,16 +263,16 @@ h1 {
     border-radius: 50%;
 }
 
-input:checked + .slider::before {
+input:checked+.slider::before {
     left: auto;
     right: 2px;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: var(--text-color);
 }
 
-/* From Uiverse.io by thxhtrxn */ 
+/* From Uiverse.io by thxhtrxn */
 .button {
     margin-bottom: 24px;
     display: inline-flex;
@@ -275,28 +283,31 @@ input:checked + .slider {
     font-weight: 500;
     font-family: inherit;
     font-size: 1rem;
-    color: var(--text-color); /* slate-200 */
-    background-color: var(--primary-color); /* zinc-950 */
+    color: var(--text-color);
+    /* slate-200 */
+    background-color: var(--primary-color);
+    /* zinc-950 */
     /* border: 1.58px solid #020202; */
     border-radius: 0.75rem;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
-  }
-  
-  /* From Uiverse.io by thxhtrxn */ 
-  .button .subtext {
-    color: rgba(203, 213, 225, 0.85); /* slate-300/85 */
+}
+
+/* From Uiverse.io by thxhtrxn */
+.button .subtext {
+    color: rgba(203, 213, 225, 0.85);
+    /* slate-300/85 */
     margin-left: 0.5rem;
-  }
-  
-  /* From Uiverse.io by thxhtrxn */ 
-  .button:hover {
+}
+
+/* From Uiverse.io by thxhtrxn */
+.button:hover {
     transform: translateY(-0.335rem);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  }
-  
+}
 
-  #licenseNote {
+
+#licenseNote {
     margin-top: auto;
     padding-top: 1rem;
     /* border-top: 1px solid #ddd; */
@@ -307,22 +318,45 @@ input:checked + .slider {
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
-  }
-  
-  #licenseNote p {
+}
+
+#licenseNote p {
     margin: 0;
     line-height: 1.6;
-  }
-  
-  #licenseNote a {
+}
+
+#licenseNote a {
     color: var(--form-color);
     text-decoration: none;
-  }
-  
-  #licenseNote a:hover {
+}
+
+#licenseNote a:hover {
     color: var(--primary-color);
-  }
-  
+}
+
+.previewImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    aspect-ratio: 1 / 1;
+    border: 2px dashed #aaa;
+    border-radius: 8px;
+    font-size: 48px;
+    color: #fbfbfb;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+    opacity: 0;
+}
+
+.previewImage.show {
+    opacity: 1;
+    border-color: #777;
+    color: #777;
+    transition: all 0.3s ease;
+    background-color: var(--secondary-color);
+}
 
 @media (max-width: 768px) {
     body {
