@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="nrtools_icon.ico">
 </head>
+
 <body>
     <div id="info">
         <div id="desc">
@@ -18,99 +20,105 @@
                 <label for="prefix">คำนำหน้าชื่อ:</label>
                 <input type="text" id="prefix">
             </div>
-        
+
             <div class="form-row">
                 <label for="firstName">ชื่อ:</label>
                 <input type="text" id="firstName">
             </div>
-        
+
             <div class="form-row">
                 <label for="lastName">นามสกุล:</label>
                 <input type="text" id="lastName">
             </div>
-        
+
             <div class="form-row">
                 <label for="studentId">เลขที่:</label>
                 <input type="text" id="studentId">
             </div>
-        
+
             <div class="form-row">
                 <label for="class">ชั้น:</label>
                 <input type="text" id="class">
             </div>
-        
+
             <div class="form-row">
                 <label for="points">จำนวนคะแนน:</label>
                 <input type="text" id="points">
             </div>
-        
+
             <div class="form-row">
                 <label for="date">วัน/เดือน/ปี ที่ส่ง:</label>
                 <input type="text" id="date" placeholder="ปล่อยว่างไว้ในกรณีที่ใช้วันที่วันนี้">
             </div>
 
             <div class="form-row switch-row">
-               <!-- <label for="modeToggle">โหมด:</label> -->
-               <div class="switch-wrapper">
-                   <span>รายเดือน</span>
-                   <label class="switch">
-                       <input type="checkbox" id="modeToggle">
-                       <span class="slider round"></span>
-                   </label>
-                   <span>รายภาคเรียน</span>
-               </div>
+                <!-- <label for="modeToggle">โหมด:</label> -->
+                <div class="switch-wrapper">
+                    <span>รายเดือน</span>
+                    <label class="switch">
+                        <input type="checkbox" id="modeToggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span>รายภาคเรียน</span>
+                </div>
             </div>
-            
+
             <!-- รายเดือน Section -->
             <div class="form-row mode-monthly">
-               <label for="months">รายเดือน:</label>
-               <select id="months">
-                   <option value="" selected>----ว่าง----</option>
-                   <option value="มกราคม">มกราคม</option>
-                   <option value="กุมภาพันธ์">กุมภาพันธ์</option>
-                   <option value="มีนาคม">มีนาคม</option>
-                   <option value="เมษายน">เมษายน</option>
-                   <option value="พฤษภาคม">พฤษภาคม</option>
-                   <option value="มิถุนายน">มิถุนายน</option>
-                   <option value="กรกฎาคม">กรกฎาคม</option>
-                   <option value="สิงหาคม">สิงหาคม</option>
-                   <option value="กันยายน">กันยายน</option>
-                   <option value="ตุลาคม">ตุลาคม</option>
-                   <option value="พฤศจิกายน">พฤศจิกายน</option>
-                   <option value="ธันวาคม">ธันวาคม</option>
-               </select>
+                <label for="months">รายเดือน:</label>
+                <select id="months">
+                    <option value="" selected>----ว่าง----</option>
+                    <option value="มกราคม">มกราคม</option>
+                    <option value="กุมภาพันธ์">กุมภาพันธ์</option>
+                    <option value="มีนาคม">มีนาคม</option>
+                    <option value="เมษายน">เมษายน</option>
+                    <option value="พฤษภาคม">พฤษภาคม</option>
+                    <option value="มิถุนายน">มิถุนายน</option>
+                    <option value="กรกฎาคม">กรกฎาคม</option>
+                    <option value="สิงหาคม">สิงหาคม</option>
+                    <option value="กันยายน">กันยายน</option>
+                    <option value="ตุลาคม">ตุลาคม</option>
+                    <option value="พฤศจิกายน">พฤศจิกายน</option>
+                    <option value="ธันวาคม">ธันวาคม</option>
+                </select>
             </div>
-            
+
             <!-- รายภาคเรียน Section -->
             <div class="form-row mode-semester" style="display: none;">
-               <label for="semeter">ภาคเรียน:</label>
-               <input type="text" id="semeter" placeholder="ปล่อยว่างไว้ในกรณีไม่ต้องการให้แสดง">
+                <label for="semeter">ภาคเรียน:</label>
+                <input type="text" id="semeter" placeholder="ปล่อยว่างไว้ในกรณีไม่ต้องการให้แสดง">
             </div>
             <div class="form-row mode-semester" style="display: none;">
-               <label for="semeter-year">ปีการศึกษา:</label>
-               <input type="text" id="semeter-year" placeholder="ปล่อยว่างไว้ในกรณีไม่ต้องการให้แสดง">
+                <label for="semeter-year">ปีการศึกษา:</label>
+                <input type="text" id="semeter-year" placeholder="ปล่อยว่างไว้ในกรณีไม่ต้องการให้แสดง">
             </div>
         </div>
-        
+
         <button onclick="generateFromAlbum()" class="button">
             เริ่มสร้างเอกสาร
         </button>
-        
+
         <div id="licenseNote">
             <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">
-              <a property="dct:title" rel="cc:attributionURL" href="https://github.com/Poramet-c/nrtools">nrtools</a> 
-              by 
-              <a rel="cc:attributionURL dct:creator" target="_blank" property="cc:attributionName" href="https://www.instagram.com/c.poramet/?utm_source=ig_web_button_share_sheet">Poramet C.</a> 
-              is licensed under 
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer">
-                Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
-                <img style="height:22px;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt="">
-                <img style="height:22px;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt="">
-                <img style="height:22px;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt="">
-                <img style="height:22px;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt="">
-              </a>
+                <a property="dct:title" rel="cc:attributionURL" href="https://github.com/Poramet-c/nrtools">nrtools</a>
+                by
+                <a rel="cc:attributionURL dct:creator" target="_blank" property="cc:attributionName"
+                    href="https://www.instagram.com/c.poramet/?utm_source=ig_web_button_share_sheet">Poramet C.</a>
+                is licensed under
+                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank"
+                    rel="license noopener noreferrer">
+                    Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+                    <img style="height:22px;margin-left:3px;vertical-align:text-bottom;"
+                        src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt="">
+                    <img style="height:22px;margin-left:3px;vertical-align:text-bottom;"
+                        src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt="">
+                    <img style="height:22px;margin-left:3px;vertical-align:text-bottom;"
+                        src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt="">
+                    <img style="height:22px;margin-left:3px;vertical-align:text-bottom;"
+                        src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt="">
+                </a>
             </p>
-          </div>  
+        </div>
     </div>
 
     <div id="contents">
@@ -118,10 +126,10 @@
         <!-- <h2>ทดสอบ</h2> -->
         <div id="album">
             <div id="uploadWrapper">
-              <label for="imageUploader" id="uploadLabel">+</label>
-              <input type="file" id="imageUploader" accept="image/*" multiple hidden>
+                <label for="imageUploader" id="uploadLabel">+</label>
+                <input type="file" id="imageUploader" accept="image/*" multiple hidden>
             </div>
-          </div>          
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -129,4 +137,5 @@
     <script src="script.js"></script>
     <!-- <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/Poramet-c/nrtools">nrtools</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.instagram.com/c.poramet/?utm_source=ig_web_button_share_sheet">Poramet C.</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt=""></a></p> -->
 </body>
+
 </html>
